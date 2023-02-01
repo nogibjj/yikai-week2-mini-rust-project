@@ -5,7 +5,7 @@ use clap::Parser;
 #[clap(
     version = "1.0",
     author = "Yikai Liu",
-    about = "Check if two files are different"
+    about = "Check if the input is palindrome"
 )]
 struct Cli {
     #[clap(subcommand)]
@@ -17,16 +17,15 @@ enum Commands {
     #[clap(version = "1.0", author = "Yikai Liu")]
     Check {
         #[clap(short, long)]
-        file1: String,
-        file2: String,
+        string: String,
     },
 }
 
 fn main() {
     let args = Cli::parse();
     match args.command {
-        Some(Commands::Check { file1, file2 }) => {
-            let result = hello::check_diff(&file1, &file2);
+        Some(Commands::Check { string }) => {
+            let result = hello::check_palindrome(&string);
             println!("{}", result);
         }
         None => println!("No subcommand was used"),

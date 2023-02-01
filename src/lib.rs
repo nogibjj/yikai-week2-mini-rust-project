@@ -4,11 +4,23 @@
 If the name is "Marco", returns "Polo".
 If the name is "any other value", it returns "Marco".
 */
-use std::fs;
 
-pub fn check_diff(file1: &str, file2: &str) -> bool {
-    let contents1 = fs::read_to_string(file1).expect("Error reading file 1");
-    let contents2 = fs::read_to_string(file2).expect("Error reading file 2");
+pub fn check_palindrome(input: &str) -> bool {
+    if input.len() == 0 {
+        return true;
+    }
+    let mut last = input.len() - 1;
+    let mut first = 0;
 
-    contents1 == contents2
+    let my_vec = input.as_bytes().to_owned();
+
+    while first < last {
+        if my_vec[first] != my_vec[last] {
+            return false;
+        }
+
+        first += 1;
+        last -= 1;
+    }
+    return true;
 }
